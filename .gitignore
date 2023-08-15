@@ -1,4 +1,6 @@
 /bin
 /include
 /lib
+/Scripts
+/fastapi-tutorial/__pycache__
 pyvenv.cfg
