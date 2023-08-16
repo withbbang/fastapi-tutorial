@@ -2,6 +2,8 @@ from fastapi import FastAPI, Path, Query
 from typing import Union
 from pydantic import BaseModel
 
+from routers import body
+
 app = FastAPI()
 
 class Item(BaseModel):
@@ -97,3 +99,5 @@ async def read_tests(
     if q:
         results.update({"q": q})
     return results
+
+app.include_router(body.router)
