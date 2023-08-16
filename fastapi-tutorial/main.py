@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, Query
 from typing import Union
 from pydantic import BaseModel
 
@@ -66,3 +66,34 @@ async def create_item(item_id: int, item: Item, q: Union[str, None] = None):
     if q:
         result.update({"q": q})
     return result
+
+# 쿼리 파라미터는 q가 아닌 alias인 param-query로 전달해야 한다.
+# params/123123?q=good -> q is None
+# params/123123?param-query=good -> q is good
+@app.get("/params/{param_id}")
+async def read_items(
+    param_id: int = Path(title="The ID of the item to get"),
+    q: Union[str, None] = Query(default=None, alias="param-query"),
+):
+    results = {"param_id": param_id}
+    
+    if q:
+        results.update({"q": q})
+    
+    print(results)
+    
+    return results
+
+# 숫자 검증
+# gt: greater than
+# ge: greate or equal
+# lt: less than
+# le: less or equal
+@app.get("/tests/{test_id}")
+async def read_tests(
+    *, test_id: int = Path(title="The ID of the item to get", ge=1), q: str
+):
+    results = {"test_id": test_id}
+    if q:
+        results.update({"q": q})
+    return results
