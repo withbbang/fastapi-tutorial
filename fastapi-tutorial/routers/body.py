@@ -3,6 +3,7 @@ from fastapi import APIRouter, Body, Path
 from typing_extensions import Annotated
 from models.item import Item
 from models.user import User
+from models.field import FieldTest
 
 router = APIRouter(
     prefix="/router",
@@ -44,4 +45,10 @@ async def update_item(
     item_id: int, item: Item, user: User, importance: Annotated[Union[int, None], Body(gt=0)] = None
 ):
     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    return results
+
+# Field로 유효성 체크
+@router.post("/field/{item_id}")
+async def update_item(item_id: int, item: FieldTest):
+    results = {"item_id": item_id, "item": item}
     return results
