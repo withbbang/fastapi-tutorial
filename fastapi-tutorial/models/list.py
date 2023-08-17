@@ -7,3 +7,4 @@ class Lists(BaseModel):
     price: float
     tax: Union[float, None] = None
     tags: list = []
+    test: str
