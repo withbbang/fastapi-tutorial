@@ -4,6 +4,7 @@ from typing_extensions import Annotated
 from models.item import Item
 from models.user import User
 from models.field import FieldTest
+from models.list import Lists
 
 router = APIRouter(
     prefix="/router",
@@ -51,4 +52,9 @@ async def update_item(
 @router.post("/field/{item_id}")
 async def update_item(item_id: int, item: FieldTest):
     results = {"item_id": item_id, "item": item}
+    return results
+
+@router.post("/lists/{item_id}")
+async def update_item(item_id: int, lists: Lists):
+    results = {"item_id": item_id, "lists": lists}
     return results
