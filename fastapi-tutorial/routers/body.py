@@ -6,6 +6,7 @@ from models.user import User
 from models.field import FieldTest
 from models.list import Lists
 from models.set import Sets
+from models.subModel import SubModel
 
 router = APIRouter(
     prefix="/router",
@@ -63,4 +64,9 @@ async def update_item(item_id: int, lists: Lists):
 @router.post("/sets/{item_id}")
 async def update_item(item_id: int, sets: Sets):
     results = {"item_id": item_id, "sets": sets}
+    return results
+
+@router.post("/sub-model/{item_id}")
+async def update_item(item_id: int, subModel: SubModel):
+    results = {"item_id": item_id, "subModel": subModel}
     return results
