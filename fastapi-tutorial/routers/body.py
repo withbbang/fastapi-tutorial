@@ -5,6 +5,7 @@ from models.item import Item
 from models.user import User
 from models.field import FieldTest
 from models.list import Lists
+from models.set import Sets
 
 router = APIRouter(
     prefix="/router",
@@ -57,4 +58,9 @@ async def update_item(item_id: int, item: FieldTest):
 @router.post("/lists/{item_id}")
 async def update_item(item_id: int, lists: Lists):
     results = {"item_id": item_id, "lists": lists}
+    return results
+
+@router.post("/sets/{item_id}")
+async def update_item(item_id: int, sets: Sets):
+    results = {"item_id": item_id, "sets": sets}
     return results
