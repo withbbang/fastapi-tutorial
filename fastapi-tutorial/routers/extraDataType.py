@@ -1,9 +1,8 @@
 from datetime import datetime, time, timedelta
 from typing import Union
 from uuid import UUID
-from fastapi import Body
+from fastapi import APIRouter, Body
 from typing_extensions import Annotated
-from fastapi import APIRouter
 
 router = APIRouter(
     prefix="/router",
@@ -23,7 +22,7 @@ async def read_items(
 ):
     start_process = start_datetime + process_after
     duration = end_datetime - start_process
-    
+
     return {
         "item_id": item_id,
         "start_datetime": start_datetime,
