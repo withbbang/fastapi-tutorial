@@ -2,7 +2,7 @@ from typing import Union
 from fastapi import APIRouter, Body, Path
 from typing_extensions import Annotated
 from models.item import Item
-from models.user import User
+from models.user import User, BaseUser, UserIn
 from models.field import FieldTest
 from models.list import Lists
 from models.set import Sets
@@ -80,3 +80,9 @@ async def update_item(item_id: int, subModel: SubModel):
 async def update_item(item_id: int, exampleModel: ExampleModel):
     results = {"item_id": item_id, "exampleModel": exampleModel}
     return results
+
+# UserIn은 BaseUser을 상속받은 모델이므로 BaseUser data + password 까지 포함하고 있다.
+# 실제로는 UserIn 인스턴스를 반환하지만 fastapi에서 반환 모델을 인지하여, 필터링 후 return 한다.
+@router.post("/user/")
+async def create_user(user: UserIn) -> BaseUser:
+    return user
