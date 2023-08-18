@@ -1,5 +1,6 @@
 from typing import Union
-from fastapi import APIRouter, Body, Path
+from fastapi import APIRouter, Body, Path, Response
+from fastapi.responses import RedirectResponse, JSONResponse
 from typing_extensions import Annotated
 from models.item import Item
 from models.user import User, BaseUser, UserIn
@@ -86,3 +87,10 @@ async def update_item(item_id: int, exampleModel: ExampleModel):
 @router.post("/user/")
 async def create_user(user: UserIn) -> BaseUser:
     return user
+
+# RedirectResponse, JSONResponse는 Response의 하위 클래스 이므로 fastapi에서 검열을 하여 응답값으로 내려줄 수 있다.
+@router.get("/portal/{teleport}")
+async def get_portal(teleport: bool = False) -> Response:
+    if teleport:
+        return RedirectResponse(url="https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+    return JSONResponse(content={"message": "Here's your interdimensional portal."})
