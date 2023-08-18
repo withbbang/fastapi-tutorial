@@ -15,3 +15,10 @@
 2. main: 파일 main.py (파이썬 "모듈").<br>
 3. app: main.py 내부의 app = FastAPI() 줄에서 생성한 오브젝트.<br>
 4. --reload: 코드 변경 후 서버 재시작. (개발에만 사용)<br>
+
+<br><br><br>
+
+# python 라이브러리 주기적인 동기화
+
+1. pip freeze > requirements.txt -> 현재 가상환경에 설치된 라이브러리를 requirements.txt에 기록
+2. pip install -r requirements.txt -> requirements.txt에 기록된 라이브러리들을 리컬시브하게 설치
