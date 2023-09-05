@@ -2,7 +2,7 @@ from fastapi import FastAPI, Path, Query
 from typing import Union
 from pydantic import BaseModel
 
-from routers import body, extraDataType
+from routers import body, cookie, extraDataType
 
 app = FastAPI()
 
@@ -102,3 +102,4 @@ async def read_tests(
 
 app.include_router(body.router)
 app.include_router(extraDataType.router)
+app.include_router(cookie.router)
