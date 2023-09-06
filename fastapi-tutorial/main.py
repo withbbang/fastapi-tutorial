@@ -3,7 +3,7 @@ from typing import Union
 from pydantic import BaseModel
 
 from routers import body, cookie, extraDataType, header, responseModel
-from routers import body, cookie, extraDataType, header, formField
+from routers import body, cookie, extraDataType, header, formField, files
 
 app = FastAPI()
 
@@ -107,3 +107,4 @@ app.include_router(cookie.router)
 app.include_router(header.router)
 app.include_router(responseModel.router)
 app.include_router(formField.router)
+app.include_router(files.router)
